@@ -11,31 +11,6 @@ namespace RobotChallenge
         private int[] _grid = { 0, 0, 0, 0 };
         private int _currentPosition = -1;
 
-        public void PlaceRobot()
-        {
-            int position;
-            bool validPlacement = false;
-
-            while (!validPlacement)
-            {
-                Console.WriteLine("Choose a starting position (1-4) to place the robot:");
-                string input = Console.ReadLine();
-
-                if (int.TryParse(input, out position) && position >= 1 && position <= 4)
-                {
-                    position--;
-                    _grid[position] = 1;
-                    _currentPosition = position;
-                    validPlacement = true;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid position. Please enter a number between 1 and 4.");
-                }
-                Console.WriteLine();
-            }
-        }
-
         public void PlayGame(string input)
         {
             if (int.TryParse(input, out int newPosition) && newPosition >= 1 && newPosition <= 4)

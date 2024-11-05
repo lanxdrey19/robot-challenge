@@ -48,14 +48,9 @@ void RunGameSession()
     game.ReportPosition();
     game.DisplayGrid();
 
-    game.PlaceRobot();
-
-    game.ReportPosition();
-    game.DisplayGrid();
-
     while (playing)
     {
-        Console.WriteLine("Choose a position (1-4) to move the robot, or type 'q' to exit:");
+        Console.WriteLine("Choose a position (1-4) to move the robot to, or type 'q' to exit:");
         string input = Console.ReadLine();
 
         if (input?.ToLower() == "q")
@@ -73,7 +68,30 @@ void RunGameSession()
 void RunTestScenarioSession()
 {
     Console.WriteLine("Test Scenario");
-    Console.WriteLine("Running test scenarios...");
+    Console.WriteLine("Running test scenario...");
+
+    Game game = new Game();
+
+    game.ReportPosition();
+    game.DisplayGrid();
+
+    Console.WriteLine("Moving robot to position 2...");
+    game.PlayGame("2");
+
+    Console.WriteLine("Moving robot to position 3...");
+    game.PlayGame("3");
+
+    Console.WriteLine("Attempting an invalid move to position 5...");
+    game.PlayGame("5");
+
+    Console.WriteLine("Attempting an invalid move to position hello...");
+    game.PlayGame("hello");
+
+    Console.WriteLine("Moving robot to position 1...");
+    game.PlayGame("1");
+
+    Console.WriteLine("Moving robot to position 4...");
+    game.PlayGame("4");
 
     Console.WriteLine("Test scenario completed.");
     Console.WriteLine("Press any key to return to the main menu.");
