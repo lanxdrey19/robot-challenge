@@ -9,57 +9,60 @@ namespace RobotChallenge
     public class Game
     {
         private int[] _grid;
-        private int _currentPosition;
-        public Game(int[] grid, int currentPosition)
+        public Game(int[] grid)
         {
             _grid = grid;
-            _currentPosition = currentPosition;
         }
 
-        public void MoveRobot(int newPosition)
+        public int MoveRobot(int newPosition)
         {
-            if (_currentPosition != -1)
+
+            int index = Array.IndexOf(_grid, 1);
+            if (index != -1)
             {
-                _grid[_currentPosition] = 0;
+                _grid[index] = 0;
             }
 
             _grid[newPosition] = 1;
-            _currentPosition = newPosition;
+
+            return newPosition;
         }
 
-        public void DisplayGrid()
+        public string DisplayGrid()
         {
-            Console.WriteLine("Current Grid:");
+            StringBuilder gridDisplay = new StringBuilder("Current Grid:\n");
 
             for (int i = 0; i < _grid.Length; i++)
             {
                 string displayValue = _grid[i] == 1 ? "X" : (i + 1).ToString();
-                Console.Write(displayValue + " ");
+                gridDisplay.Append(displayValue + " ");
 
                 if (i % 2 == 1)
                 {
-                    Console.WriteLine();
+                    gridDisplay.Append("\n");
                 }
             }
 
-            Console.WriteLine();
+            Console.WriteLine(gridDisplay.ToString());
+            return gridDisplay.ToString(); 
         }
 
-        public void ReportPosition()
+        public string ReportPosition()
         {
             int index = Array.IndexOf(_grid, 1);
+            string finalMessage = "The robot is not on the grid.\n";
 
             if (index == -1)
             {
-                Console.WriteLine("The robot is not on the grid.");
+                Console.WriteLine(finalMessage);
+                return finalMessage;
             }
-            else
-            {
-                int position = index + 1;
 
-                Console.WriteLine($"The robot is at position: {position}");
-            }
-            Console.WriteLine();
+            int position = index + 1;
+            finalMessage = $"The robot is at position: {position}\n";
+            Console.WriteLine(finalMessage);
+            return finalMessage;
+
         }
     }
 }
