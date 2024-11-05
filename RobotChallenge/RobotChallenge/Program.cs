@@ -38,12 +38,24 @@ void RunIntroSession()
 
 void RunGameSession()
 {
+
     Console.WriteLine("Game Session - Type 'q' to exit the game.");
 
+    Game game = new Game();
+
     bool playing = true;
+
+    game.ReportPosition();
+    game.DisplayGrid();
+
+    game.PlaceRobot();
+
+    game.ReportPosition();
+    game.DisplayGrid();
+
     while (playing)
     {
-        Console.WriteLine("You're playing the game! Type 'q' to return to the main menu.");
+        Console.WriteLine("Choose a position (1-4) to move the robot, or type 'q' to exit:");
         string input = Console.ReadLine();
 
         if (input?.ToLower() == "q")
@@ -53,7 +65,7 @@ void RunGameSession()
         }
         else
         {
-            Console.WriteLine("Game being played...");
+            game.PlayGame(input);
         }
     }
 }
