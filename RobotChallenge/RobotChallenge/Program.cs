@@ -41,12 +41,9 @@ void RunGameSession()
 
     Console.WriteLine("Game Session - Type 'q' to exit the game.");
 
-    Game game = new Game();
+    GameSession game = new GameSession();
 
     bool playing = true;
-
-    game.ReportPosition();
-    game.DisplayGrid();
 
     while (playing)
     {
@@ -70,10 +67,13 @@ void RunTestScenarioSession()
     Console.WriteLine("Test Scenario");
     Console.WriteLine("Running test scenario...");
 
-    Game game = new Game();
+    GameSession game = new GameSession();
 
-    game.ReportPosition();
-    game.DisplayGrid();
+    Console.WriteLine("Attempting an invalid move to position h3llo...");
+    game.PlayGame("h3llo");
+
+    Console.WriteLine("Attempting an invalid move to position -7...");
+    game.PlayGame("-7");
 
     Console.WriteLine("Moving robot to position 2...");
     game.PlayGame("2");

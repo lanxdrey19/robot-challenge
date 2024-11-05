@@ -8,28 +8,15 @@ namespace RobotChallenge
 {
     public class Game
     {
-        private int[] _grid = { 0, 0, 0, 0 };
-        private int _currentPosition = -1;
-
-        public void PlayGame(string input)
+        private int[] _grid;
+        private int _currentPosition;
+        public Game(int[] grid, int currentPosition)
         {
-            if (int.TryParse(input, out int newPosition) && newPosition >= 1 && newPosition <= 4)
-            {
-                Console.WriteLine($"{newPosition} is a valid move.");
-                MoveRobot(newPosition - 1);
-           
-            }
-            else
-            {
-                Console.WriteLine($"{input} is an invalid move. Enter a number between 1 and 4.");
-            }
-            Console.WriteLine();
-
-            ReportPosition();
-            DisplayGrid();
+            _grid = grid;
+            _currentPosition = currentPosition;
         }
 
-        private void MoveRobot(int newPosition)
+        public void MoveRobot(int newPosition)
         {
             if (_currentPosition != -1)
             {
@@ -65,7 +52,7 @@ namespace RobotChallenge
             if (index == -1)
             {
                 Console.WriteLine("The robot is not on the grid.");
-            } 
+            }
             else
             {
                 int position = index + 1;
@@ -74,6 +61,5 @@ namespace RobotChallenge
             }
             Console.WriteLine();
         }
-
     }
 }
